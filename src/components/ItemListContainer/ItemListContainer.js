@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react'
+import { Container } from 'react-bootstrap'
 import { getProductList } from '../../helpers/product'
 import { Loading } from '../Loading/Loading'
 import { ItemList } from './ItemList'
@@ -21,12 +22,12 @@ export const ItemListContainer = () => {
     }, [])
 
     return (
-        <section className="container my-5">
+        <Container className="my-5">
             {
                 loading 
                     ? <Loading/>
                     : <ItemList items={items}/>
             }
-        </section>
+        </Container>
     )
 }
