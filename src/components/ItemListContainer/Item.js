@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import './Item.scss'
 import { Col, Card, Button } from 'react-bootstrap'
 
@@ -12,7 +13,9 @@ export const Item = ( { id, brand, title, description, price, pictureUrl } ) => 
                     <Card.Title className="title text-truncate">{title}</Card.Title>
                     <Card.Text className="price">$ {price}</Card.Text>
                     <Card.Text className="description text-truncate">{description}</Card.Text>
-                    <Button className="button">Comprar</Button>
+                    <Link to={`/item/${id}`}>
+                        <Button variant="primary" className="button">Comprar</Button>
+                    </Link>
                 </Card.Body>
             </Card>
         </Col>

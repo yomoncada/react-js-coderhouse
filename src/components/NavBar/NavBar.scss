@@ -1,3 +1,16 @@
-.fire-icon {
-    color: #fff;
+.activeLink {
+    font-weight: bold;
+}
+
+.link {
+  text-decoration: none;
+  color: rgba(255,255,255,.55);  
+}
+
+.link:hover {
+    color: rgba(255,255,255,.75);
+}
+
+.dropdown-link {
+    text-decoration: none;
 }

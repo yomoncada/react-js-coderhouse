@@ -1,6 +1,8 @@
 import React from 'react'
+import { Link, NavLink } from 'react-router-dom'
+import './NavBar.scss'
 import { CartWidget } from './CartWidget'
-import { Container, Navbar, Nav } from 'react-bootstrap'
+import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap'
 
 export const NavBar = ( {logo} ) => {
     return (
@@ -18,11 +20,26 @@ export const NavBar = ( {logo} ) => {
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
-                    <Nav.Link href="#">Ofertas del Día</Nav.Link>
-                    <Nav.Link href="#">Categorías</Nav.Link>
-                    <Nav.Link href="#">Contáctanos</Nav.Link>
+                    <Nav.Item>
+                        <div className="nav-link">
+                            <NavLink className="link" activeClassName={'activeLink'} exact to="/">Inicio</NavLink>
+                        </div>
+                    </Nav.Item>
+                    <NavDropdown title="Categorías" id="basic-nav-dropdown">
+                        <div className="dropdown-item">
+                            <NavLink className="dropdown-link" activeClassName={'activeLink'} exact to="/category/1">Hombre</NavLink>
+                        </div>
+                        <div className="dropdown-item">
+                            <NavLink className="dropdown-link" activeClassName={'activeLink'} exact to="/category/2">Mujer</NavLink>
+                        </div>
+                    </NavDropdown>
+                    <Nav.Item>
+                        <div className="nav-link">
+                            <NavLink className="link" activeClassName={'activeLink'} exact to="/contact">Contacto</NavLink>
+                        </div>
+                    </Nav.Item>
                 </Nav>
-                <CartWidget/>
+                <Link to="/cart"><CartWidget/></Link>
                 </Navbar.Collapse>
             </Container>
         </Navbar>
