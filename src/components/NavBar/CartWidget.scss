@@ -1,3 +1,19 @@
-.shopping-cart-icon {
+.widget {
+    text-align: center;
+    position: relative;
+}
+.icon {
     color: #fff;
+}
+
+.counter {
+    font-size: .7rem;
+    position: absolute;
+    top: -5px;
+    right: -5px;
+    width: 15px;
+    height: 15px;
+    color: #fff;
+    background-color: #0a58ca;
+    border-radius: 50%;
 }

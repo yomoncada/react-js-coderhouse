@@ -9,13 +9,15 @@ export const NavBar = ( {logo} ) => {
         <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
                 <Navbar.Brand href="#">
-                <img
-                    src="https://i.imgur.com/WCCO1Q5.png"
-                    width="35"
-                    height="35"
-                    className="d-inline-block align-top"
-                    alt="Shoepify"
-                />
+                    <Link to="/">
+                        <img
+                            src="https://i.imgur.com/WCCO1Q5.png"
+                            width="35"
+                            height="35"
+                            className="d-inline-block align-top"
+                            alt="Shoepify"
+                        />
+                    </Link>
                 </Navbar.Brand>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">

@@ -1,12 +1,33 @@
-import React from 'react'
+import React, { useContext, useState } from 'react'
 import { useHistory } from 'react-router'
 import './ItemDetail.scss'
-import { Form, Row, Col, Card, Button } from 'react-bootstrap'
-import { FaMinus, FaPlus } from 'react-icons/fa'
+import { Row, Col, Card, Button } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
+import { ItemCount } from './ItemCount'
+import { CartContext } from '../../context/CartContext'
 
-export const ItemDetail = ({ id, title, brand, price, pictureUrl, description, category} ) => {
+export const ItemDetail = ({ id, title, brand, price, pictureUrl, description, category, stock} ) => {
     const {goBack, push} = useHistory()
 
+    const {addItem, isInCart} = useContext(CartContext)
+
+    const [quantity, setQuantity] = useState(1)
+
+    const onAdd = (quantity) => {
+        const newItem = {
+            id,
+            title,
+            price,
+            pictureUrl,
+            category,
+            quantity
+        }
+
+        if (quantity > 0) {
+            addItem(newItem)
+        }
+    }
+    
     return (
         <>
             <Col lg={12} className="mb-3">
@@ -31,28 +52,17 @@ export const ItemDetail = ({ id, title, brand, price, pictureUrl, description, c
                     <Col lg={3} className="actions">
                         <Card>
                             <Card.Body>
-                                <h4>${price}</h4>
-                                <p>Llega mañana</p>
-                                <h5>En Stock</h5>
-                                <Row className="mt-3 justify-content-center">
-                                    <Col lg={3}>
+                            { 
+                                isInCart(id) 
+                                ? 
+                                    <div className="d-grid gap-2">
                                         <Button variant="primary">
-                                            <FaMinus></FaMinus>
+                                            <Link to="/cart" className="button">Terminar mi compra</Link>
                                         </Button>
-                                    </Col>
-                                    <Col lg={6}>
-                                        <Form.Control className="input" type="number" placeholder="0"/>
-                                    </Col>
-                                    <Col lg={3} className="m-0 p-0">
-                                        <Button variant="primary">
-                                            <FaPlus></FaPlus>
-                                        </Button>
-                                    </Col>
-                                </Row>
-                                <div className="d-grid gap-2 mt-3">
-                                    <Button variant="outline-primary">Añadir al carrito</Button>
-                                    <Button variant="primary">Comprar ahora</Button>
-                                </div>
+                                    </div>
+                                :
+                                    <ItemCount price={price} quantity={quantity} setQuantity={setQuantity} onAdd={onAdd} stock={stock}/>
+                            }
                             </Card.Body>
                         </Card>
                     </Col>

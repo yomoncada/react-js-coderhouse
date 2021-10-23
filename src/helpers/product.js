@@ -7,3 +7,9 @@ export const getProductList = () => {
         }, 2000)
     })
 }
+
+export const getProduct = (id) => {
+    return new Promise((resolve, reject) => {
+        resolve(products.find(product => product.id === Number(id)))
+    })
+}

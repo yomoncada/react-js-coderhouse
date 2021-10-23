@@ -5,7 +5,7 @@ import { Col, Card, Button } from 'react-bootstrap'
 
 export const Item = ( { id, brand, title, description, price, pictureUrl } ) => {
     return (
-        <Col lg={3} md={4} sm={6} xs={12}>
+        <Col lg={3} md={4} sm={6} xs={12} key={id}>
             <Card className="item mb-3">
                 <Card.Img className="picture" variant="top" src={pictureUrl} />
                 <Card.Body>

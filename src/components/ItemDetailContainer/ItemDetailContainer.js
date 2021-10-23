@@ -15,7 +15,7 @@ export const ItemDetailContainer = () => {
 
         getProductList()
             .then(products => {
-                setItem(products.find( product => product.id === Number(itemId)))
+                setItem(products.find(product => product.id === Number(itemId)))
             })
             .finally(()=> {
                 setLoading(false)
