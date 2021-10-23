@@ -1,6 +1,9 @@
 # Shoepify
 
 _Es un Ecommerce que ofrece zapatos de calidad y por un grandioso precio._
+### Preview
+
+![](preview.gif)
 
 ### Instalación 🔧
 
