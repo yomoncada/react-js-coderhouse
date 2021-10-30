@@ -1,34 +1,48 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { Container, Row } from 'react-bootstrap'
-import { getProductList } from '../../helpers/product'
 import { Loading } from '../Loading/Loading'
 import { ItemDetail } from './ItemDetail'
+import { getProduct } from '../../helpers/product'
+import { ItemEmpty } from '../ItemDetailContainer/ItemEmpty'
 
 export const ItemDetailContainer = () => {
     const [item, setItem] = useState(null)
+    const [exist, setExist] = useState(false)
     const [loading, setLoading] = useState(false)
     const {itemId} = useParams()
 
     useEffect(()=>{
         setLoading(true)
 
-        getProductList()
-            .then(products => {
-                setItem(products.find(product => product.id === Number(itemId)))
+        getProduct(itemId)
+            .then((product) => {
+                if (product) {
+                    setItem(product)
+                    setExist(true);
+                } else {
+                    setExist(false);
+                }
             })
-            .finally(()=> {
+            .catch( error => console.log(error))
+            .finally(() => {
                 setLoading(false)
             })
-
-    }, [itemId])
+    }, [itemId, setLoading])
 
     return (
         <Container className="my-5">
             <Row>
                 {
-                    loading ? <Loading/>
-                    : <ItemDetail {...item}/>
+                    loading 
+                    ? 
+                        <Loading/>
+                    : 
+                        exist 
+                        ? 
+                            <ItemDetail {...item}/> 
+                        : 
+                            <ItemEmpty/>
                 }
             </Row>
         </Container>

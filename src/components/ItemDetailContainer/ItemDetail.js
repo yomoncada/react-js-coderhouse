@@ -14,7 +14,7 @@ export const ItemDetail = ({ id, title, brand, price, pictureUrl, description, c
     const [quantity, setQuantity] = useState(1)
 
     const onAdd = (quantity) => {
-        const newItem = {
+        const item = {
             id,
             title,
             price,
@@ -24,7 +24,7 @@ export const ItemDetail = ({ id, title, brand, price, pictureUrl, description, c
         }
 
         if (quantity > 0) {
-            addItem(newItem)
+            addItem(item)
         }
     }
     
@@ -61,7 +61,15 @@ export const ItemDetail = ({ id, title, brand, price, pictureUrl, description, c
                                         </Button>
                                     </div>
                                 :
-                                    <ItemCount price={price} quantity={quantity} setQuantity={setQuantity} onAdd={onAdd} stock={stock}/>
+                                    <>
+                                        <h4>${price}</h4>
+                                        <p>Llega mañana</p>
+                                        <h5>En Stock</h5>
+                                        <ItemCount price={price} quantity={quantity} setQuantity={setQuantity} onAdd={onAdd} stock={stock}/>
+                                        <div className="d-grid gap-2">
+                                            <Button variant="outline-primary" onClick={() => onAdd(quantity)}>Añadir al carrito</Button>
+                                        </div>
+                                    </>
                             }
                             </Card.Body>
                         </Card>

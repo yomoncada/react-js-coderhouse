@@ -21,10 +21,8 @@ export const ItemCount = ( {price, quantity, setQuantity, onAdd, stock} ) => {
 
     return (
         <>
-            <h4>${price}</h4>
-            <p>Llega mañana</p>
-            <h5>En Stock</h5>
-            <Row className="mt-3 justify-content-center">
+            
+            <Row className="mt-3 mb-3 text-center align-items-center justify-content-center">
                 <Col lg={3}>
                     <Button variant="primary" onClick={handleSubstract}>
                         <FaMinus></FaMinus>
@@ -33,15 +31,12 @@ export const ItemCount = ( {price, quantity, setQuantity, onAdd, stock} ) => {
                 <Col lg={6}>
                     <Form.Control className="input" name="quantity" type="number" placeholder="0" value={quantity} min="1" max={stock} onChange={handleQuantityInput}/>
                 </Col>
-                <Col lg={3} className="m-0 p-0">
+                <Col lg={3}>
                     <Button variant="primary" onClick={handleSum}>
                         <FaPlus></FaPlus>
                     </Button>
                 </Col>
             </Row>
-            <div className="d-grid gap-2 mt-3">
-                <Button variant="outline-primary" onClick={() => onAdd(quantity)}>Añadir al carrito</Button>
-            </div>
         </>
     )
 }

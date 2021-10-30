@@ -29,10 +29,10 @@ export const NavBar = ( {logo} ) => {
                     </Nav.Item>
                     <NavDropdown title="Categorías" id="basic-nav-dropdown">
                         <div className="dropdown-item">
-                            <NavLink className="dropdown-link" activeClassName={'activeLink'} exact to="/category/1">Hombre</NavLink>
+                            <NavLink className="dropdown-link" activeClassName={'activeLink'} exact to="/category/hombre">Hombre</NavLink>
                         </div>
                         <div className="dropdown-item">
-                            <NavLink className="dropdown-link" activeClassName={'activeLink'} exact to="/category/2">Mujer</NavLink>
+                            <NavLink className="dropdown-link" activeClassName={'activeLink'} exact to="/category/mujer">Mujer</NavLink>
                         </div>
                     </NavDropdown>
                     <Nav.Item>

@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router'
 import { Container } from 'react-bootstrap'
-import { getProductList } from '../../helpers/product'
 import { Loading } from '../Loading/Loading'
 import { ItemList } from './ItemList'
+import { getProductList } from '../../helpers/product'
 
 export const ItemListContainer = () => {
     const [items, setItems] = useState([])
@@ -13,19 +13,16 @@ export const ItemListContainer = () => {
     useEffect(()=>{
         setLoading(true)
 
-        getProductList()
-            .then((products) => {
-                if (categoryId) {
-                    setItems(products.filter(product => product.category === Number(categoryId)))
-                } else {
-                    setItems(products)
-                }
+        getProductList(categoryId)
+            .then((items) => {
+                setItems(items)
             })
-            .catch((error) => console.log(error))
+            .catch( err => console.log(err))
             .finally(() => {
-                setLoading(false)
-            })
-    }, [categoryId])
+                setLoading(false)}
+            )
+        
+    }, [categoryId, setLoading])
 
     return (
         <Container className="my-5">

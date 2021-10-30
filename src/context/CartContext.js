@@ -9,15 +9,12 @@ export const CartProvider = ({children}) => {
     const [cart, setCart] = useState(init)
 
     const addItem = (item) => {
-      const index = cart.findIndex(cart => cart.id === Number(item.id));
+      const index = cart.findIndex(cartItem => cartItem.id === item.id);
       
-      console.log(cart[index]);
-
       if (index !== -1) {
-        const quantity = cart[index].quantity + item.quantity;
-
-        getProduct(cart[index].id).then(product => {
-          cart[index].quantity = quantity > product.stock ? product.stock : quantity;
+        getProduct(cart[index].id).then((product) => {
+          //TODO: ¿Por qué esto no está funcionando?
+          cart[index].quantity = item.quantity > product.stock ? product.stock : item.quantity;
           setCart(cart)
         })
       } else {
