@@ -1,25 +1,39 @@
 import React, { useContext } from 'react'
 import { Link } from 'react-router-dom'
 import { CartItem } from './CartItem'
-import './CartDetail.scss'
 import { Row, Col, Card, Button } from 'react-bootstrap'
 import { CartContext } from '../../context/CartContext'
+import Swal from 'sweetalert2'
 
 export const CartDetail = () => {
     const {cart, clear, countItems, calculateTotal} = useContext(CartContext)
+
+    const onClear = () => {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: `¡Estarás descartando todos los productos que seleccionaste!`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc3545',
+            confirmButtonText: 'Sí, me arrepentí',
+            cancelButtonText: '¡NO, lo quiero TODO!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                clear()
+            }
+        })
+    }
 
     return (
         <>
             <Col lg={9}>
                 <Row className="align-items-center">
-                    <Col lg={6}>
-                        <h2>Carrito</h2>
+                    <Col md={6} sm={12} className="text-md-start text-center">
+                        <h2 className="mb-md-0 mb-3">Carrito</h2>
                     </Col>
-                    <Col lg={6} className="text-end">
-                        <Button className="me-2" variant="outline-primary">
-                            <Link to="/" className="button">Seguir comprando</Link>
-                        </Button>
-                        <Button variant="danger" onClick={clear}>Vaciar carrito</Button>
+                    <Col md={6} sm={12} className="text-md-end text-center">
+                        <Link to="/" className="btn btn-outline-primary me-2">Seguir comprando</Link>
+                        <Button variant="danger" onClick={onClear}>Vaciar carrito</Button>
                     </Col>
                 </Row>
                 <hr/>
@@ -29,17 +43,17 @@ export const CartDetail = () => {
                         <CartItem product={product} key={product.id}/>
                     ))
                 }
-                    <Col lg={12} className="text-end">
-                        <h5><span className="h6 fw-normal">Total ({countItems()} productos):</span> ${calculateTotal().toFixed(2)}</h5>
+                    <Col lg={12} className="text-end d-lg-block d-none">
+                        <h5><span className="h6 fw-normal">Total ({countItems()} productos):</span> ${calculateTotal()}</h5>
                     </Col>
                 </Row>
             </Col>
             <Col lg={3}>
                 <Card>
-                    <Card.Body>
-                        <h3><span className="h5 fw-normal">Total ({countItems()} productos):</span> ${calculateTotal().toFixed(2)}</h3>
+                    <Card.Body className="text-lg-start text-center">
+                        <h3><span className="h5 fw-normal">Total ({countItems()} productos):</span> ${calculateTotal()}</h3>
                         <div className="d-grid gap-2 mt-3">
-                            <Button variant="primary">Terminar mi compra</Button>
+                            <Link to="/checkout" className="btn btn-primary">Terminar mi compra</Link>
                         </div>
                     </Card.Body>
                 </Card>

@@ -4,21 +4,19 @@ import './NavBar.scss'
 import { CartWidget } from './CartWidget'
 import { Container, Navbar, Nav, NavDropdown } from 'react-bootstrap'
 
-export const NavBar = ( {logo} ) => {
+export const NavBar = ( { logo } ) => {
     return (
         <Navbar bg="dark" variant="dark" expand="lg">
             <Container>
-                <Navbar.Brand href="#">
-                    <Link to="/">
-                        <img
-                            src="https://i.imgur.com/WCCO1Q5.png"
-                            width="35"
-                            height="35"
-                            className="d-inline-block align-top"
-                            alt="Shoepify"
-                        />
-                    </Link>
-                </Navbar.Brand>
+                <Link to="/" className="me-3">
+                    <img
+                        src="https://i.imgur.com/WCCO1Q5.png"
+                        width="35"
+                        height="35"
+                        className="d-inline-block align-top"
+                        alt="Shoepify"
+                    />
+                </Link>
                 <Navbar.Toggle aria-controls="basic-navbar-nav"/>
                 <Navbar.Collapse id="basic-navbar-nav">
                 <Nav className="me-auto">
@@ -35,11 +33,11 @@ export const NavBar = ( {logo} ) => {
                             <NavLink className="dropdown-link" activeClassName={'activeLink'} exact to="/category/mujer">Mujer</NavLink>
                         </div>
                     </NavDropdown>
-                    <Nav.Item>
+                    {/*<Nav.Item>
                         <div className="nav-link">
                             <NavLink className="link" activeClassName={'activeLink'} exact to="/contact">Contacto</NavLink>
                         </div>
-                    </Nav.Item>
+                    </Nav.Item>*/}
                 </Nav>
                 <Link to="/cart"><CartWidget/></Link>
                 </Navbar.Collapse>

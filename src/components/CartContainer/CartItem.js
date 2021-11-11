@@ -4,6 +4,7 @@ import { Row, Col, Card, Button } from 'react-bootstrap'
 import { CartContext } from '../../context/CartContext'
 import { ItemCount } from '../ItemDetailContainer/ItemCount'
 import { getProduct } from '../../helpers/product'
+import Swal from 'sweetalert2'
 
 export const CartItem = ( { product } ) => {
     const { addItem, removeItem } = useContext(CartContext)
@@ -11,7 +12,7 @@ export const CartItem = ( { product } ) => {
     
     const [newQuantity, setNewQuantity] = useState(quantity)
     const [stock, setStock] = useState(0)
-    
+
     useEffect(()=>{
         getProduct(id)
             .then((product) => {
@@ -36,29 +37,45 @@ export const CartItem = ( { product } ) => {
         }
     }
 
+    const onDelete = (id, title) => {
+        Swal.fire({
+            title: '¿Estás seguro?',
+            text: `¡Estarás eliminando "${title}" de tu carrito!`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#dc3545',
+            confirmButtonText: '¡Sí, no lo quiero!',
+            cancelButtonText: '¡Ups, me equivoqué!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                removeItem(id)
+            }
+        })
+    }
+
     return (
-        <Col lg={12} className="cart-item my-3">
+        <Col xs={12} className="cart-item my-3">
             <Card>
                 <Card.Body>
                     <Row>
-                        <Col lg={3} className="image">
+                        <Col xs={3} className="image text-lg-start text-center">
                             <img src={pictureUrl} alt={title} className="img-fluid"/>
                         </Col>
-                        <Col lg={9} className="details align-items-center justify-content center">
+                        <Col xs={9} className="details align-items-center justify-content center">
                             <Row>
-                                <Col lg={12} className="summary">
+                                <Col xs={12} className="summary">
                                     <h4>{title}</h4>
                                     <h5>${price} ({newQuantity} unidades): ${(price * newQuantity).toFixed(2)}</h5>
-                                    <p>Categoría: {category}</p>
+                                    <p className="p-0 m-0">Categoría: {category}</p>
                                 </Col>
-                                <Col lg={6} className="quantity">
+                                <Col xs={6} className="quantity">
                                     <ItemCount price={price} quantity={newQuantity} setQuantity={setNewQuantity} stock={stock}/>
                                 </Col>
-                                <Col lg={12} className="actions">
+                                <Col xs={12} className="actions text-lg-start text-center">
                                     <Button className="button text-primary" variant="link" onClick={() => onAdd(newQuantity)}>
                                         <BsPencil/> Actualizar
                                     </Button>
-                                    <Button className="button text-danger" variant="link" onClick={() => removeItem(id)}>
+                                    <Button className="button text-danger" variant="link" onClick={() => onDelete(id, title)}>
                                         <BsFillTrashFill/> Eliminar
                                     </Button>
                                 </Col>

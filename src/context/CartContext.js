@@ -13,12 +13,13 @@ export const CartProvider = ({children}) => {
       
       if (index !== -1) {
         getProduct(cart[index].id).then((product) => {
-          //TODO: ¿Por qué esto no está funcionando?
-          cart[index].quantity = item.quantity > product.stock ? product.stock : item.quantity;
-          setCart(cart)
+          let updatedCart = [...cart]
+
+          updatedCart[index].quantity = item.quantity > product.stock ? product.stock : item.quantity;
+          setCart(updatedCart)
         })
       } else {
-        setCart([...cart, item])
+          setCart([...cart, item])
       }
     }
     

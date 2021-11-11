@@ -23,15 +23,15 @@ export const ItemCount = ( {price, quantity, setQuantity, onAdd, stock} ) => {
         <>
             
             <Row className="mt-3 mb-3 text-center align-items-center justify-content-center">
-                <Col lg={3}>
+                <Col xs={3}>
                     <Button variant="primary" onClick={handleSubstract}>
                         <FaMinus></FaMinus>
                     </Button>
                 </Col>
-                <Col lg={6}>
-                    <Form.Control className="input" name="quantity" type="number" placeholder="0" value={quantity} min="1" max={stock} onChange={handleQuantityInput}/>
+                <Col xs={6}>
+                    <Form.Control className="text-center" name="quantity" type="number" placeholder="0" value={quantity} min="1" max={stock} onChange={handleQuantityInput}/>
                 </Col>
-                <Col lg={3}>
+                <Col xs={3}>
                     <Button variant="primary" onClick={handleSum}>
                         <FaPlus></FaPlus>
                     </Button>

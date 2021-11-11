@@ -1,6 +1,5 @@
 import React, { useContext, useState } from 'react'
 import { useHistory } from 'react-router'
-import './ItemDetail.scss'
 import { Row, Col, Card, Button } from 'react-bootstrap'
 import { Link } from 'react-router-dom'
 import { ItemCount } from './ItemCount'
@@ -52,25 +51,20 @@ export const ItemDetail = ({ id, title, brand, price, pictureUrl, description, c
                     <Col lg={3} className="actions">
                         <Card>
                             <Card.Body>
-                            { 
-                                isInCart(id) 
-                                ? 
-                                    <div className="d-grid gap-2">
-                                        <Button variant="primary">
-                                            <Link to="/cart" className="button">Terminar mi compra</Link>
-                                        </Button>
-                                    </div>
-                                :
-                                    <>
-                                        <h4>${price}</h4>
-                                        <p>Llega mañana</p>
-                                        <h5>En Stock</h5>
-                                        <ItemCount price={price} quantity={quantity} setQuantity={setQuantity} onAdd={onAdd} stock={stock}/>
-                                        <div className="d-grid gap-2">
-                                            <Button variant="outline-primary" onClick={() => onAdd(quantity)}>Añadir al carrito</Button>
-                                        </div>
-                                    </>
-                            }
+                            <>
+                                <h4>${price}</h4>
+                                <p>Llega mañana</p>
+                                <h5>En Stock</h5>
+                                <ItemCount price={price} quantity={quantity} setQuantity={setQuantity} onAdd={onAdd} stock={stock}/>
+                                <div className="d-grid gap-2">
+                                    <Button variant="outline-primary" onClick={() => onAdd(quantity)}>{!isInCart(id) ? 'Añadir al carrito' : 'Modificar'}</Button>
+                                    { 
+                                        isInCart(id) 
+                                        &&
+                                            <Link to="/cart" className="btn btn-primary">Terminar mi compra</Link>
+                                    }
+                                </div>
+                            </>
                             </Card.Body>
                         </Card>
                     </Col>
