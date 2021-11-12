@@ -1,6 +1,6 @@
 # Shoepify
 
-_Es un Ecommerce que ofrece zapatos de calidad y por un grandioso precio._
+_Es un Ecommerce que ofrece zapatillas de hombres y mujeres de calidad por un grandioso precio, con una simple e intuitiva interfaz de usuario que posee todas las funciones necesarias para que el usuario realice su compra de forma sencilla, exacta, segura y garantizada._
 ### Preview
 
 ![](preview.gif)
@@ -36,8 +36,15 @@ _See the section about [deployment](https://facebook.github.io/create-react-app/
 ## Construido con 🛠️
 
 * [NODE.JS](https://github.com/nodejs/node) - El manejador de dependencias
-* [REACT](https://github.com/facebook/react) - El manejador de dependencias
-* [REACT-BOOTSTRAP](https://github.com/react-bootstrap/react-bootstrap) - El framework de diseño usado
+* [REACT](https://github.com/facebook/react) - El framework de javascript para el frontend
+* [REACT-BOOTSTRAP](https://github.com/react-bootstrap/react-bootstrap) - El framework de diseño
+* [REACT-ICONS](https://github.com/react-icons/react-icons) - La librería de íconos
+* [SWEETALERT2](https://github.com/sweetalert2/sweetalert2-react-content) - La librería de alertas vistosas
 ## Autores ✒️
 
 * **Yonathan Moncada** - *Trabajo Completo* - [yomoncada](https://github.com/yomoncada)
+
+## Agradecimientos 🙌
+
+* **Conrado Lanusse** - *Profesor* - [CLanusse](https://github.com/CLanusse)
+* **Gabriel Maselli** - *Tutor*
