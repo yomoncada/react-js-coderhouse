@@ -3,7 +3,7 @@
 _Es un Ecommerce que ofrece zapatillas de hombres y mujeres de calidad por un grandioso precio, con una simple e intuitiva interfaz de usuario que posee todas las funciones necesarias para que el usuario realice su compra de forma sencilla, exacta, segura y garantizada._
 ### Preview
 
-![](preview.gif)
+![](shoepify.gif)
 
 ### Instalación 🔧
 
